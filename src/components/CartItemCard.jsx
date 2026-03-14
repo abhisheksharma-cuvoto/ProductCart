@@ -3,7 +3,7 @@ import { useProduct } from "@/context/ProductContext";
 
 function CartItemCard({ cartItem }) {
   const { id, title, price, image, quantity } = cartItem;
-  const { addToCart } = useProduct();
+  const { addToCart, removeProduct } = useProduct();
 
   return (
     <div
@@ -18,7 +18,10 @@ function CartItemCard({ cartItem }) {
         </div>
       </div>
       <div className="flex ">
-        <button className="p-3 border hover:bg-red-500 cursor-pointer">
+        <button
+          onClick={() => removeProduct(id)}
+          className="p-3 border hover:bg-red-500 cursor-pointer"
+        >
           -
         </button>
         <span className="p-3 border font-semibold bg-zinc-800">{quantity}</span>

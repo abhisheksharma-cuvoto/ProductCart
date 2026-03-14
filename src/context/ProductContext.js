@@ -42,6 +42,22 @@ export function ProductProvider({ children }) {
     }
   }
 
+  function removeProduct(id) {
+    const product = carts.find((product) => product.id === id);
+
+    if (product.quantity !== 1) {
+      setCarts((prev) =>
+        prev.map((product) =>
+          product.id == id
+            ? { ...product, quantity: product.quantity - 1 }
+            : product,
+        ),
+      );
+    } else {
+      setCarts((prev) => prev.filter((product) => product.id !== id));
+    }
+  }
+
   useEffect(() => {
     const totalProducts = carts.reduce(
       (total, product) => total + product.quantity,
@@ -58,7 +74,9 @@ export function ProductProvider({ children }) {
   }, [carts]);
 
   return (
-    <ProductContext.Provider value={{ carts, setCarts, addToCart, cartInfo }}>
+    <ProductContext.Provider
+      value={{ carts, setCarts, cartInfo, addToCart, removeProduct }}
+    >
       {children}
     </ProductContext.Provider>
   );
