@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useProduct } from "@/context/ProductContext";
 
 function ProductCard({ data }) {
@@ -11,13 +12,11 @@ function ProductCard({ data }) {
     <div className="flex gap-6 p-5 border overflow-auto">
       {/* left container for image */}
 
-      <Image
-        src={image}
-        alt={title}
-        width={100}
-        height={100}
-        style={{ objectFit: "cover" }}
-      ></Image>
+      <Link href={`/${id}`}>
+        <div className="relative w-[200px] h-[200px] hover:scale-105 cursor-pointer">
+          <Image src={image} alt={title} fill style={{ objectFit: "cover" }} />
+        </div>
+      </Link>
 
       {/* right container for product details */}
       <div className="flex flex-col justify-between">

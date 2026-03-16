@@ -18,6 +18,7 @@ export function ProductProvider({ children }) {
     totalProducts: 0,
   });
 
+  // Add products in cart
   function addToCart(id) {
     const alreadyPresent = carts.find((product) => product.id == id);
     console.log({ alreadyPresent });
@@ -42,6 +43,7 @@ export function ProductProvider({ children }) {
     }
   }
 
+  // remove products in cart
   function removeProduct(id) {
     const product = carts.find((product) => product.id === id);
 
